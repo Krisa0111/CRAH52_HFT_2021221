@@ -1,8 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ClubsDb.mdf" />
+    <None Remove="ClubsDb_log.ldf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ClubsDb.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ClubsDb_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CRAH52_HFT_2021221.Models\CRAH52_HFT_2021221.Models.csproj" />
