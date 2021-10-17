@@ -21,7 +21,9 @@ namespace CRAH52_HFT_2021221.Models
         [Required]
         public int BirthYear { get; set; }
 
-        public virtual ICollection<Guests> Guest { get; set; } // REVERSE navigation property ( this is the N side)
+        public virtual Events Event { get; set; }     // ˇ
+        [ForeignKey(nameof(Events))]        // Navigation property 1 side ( GUESTS TABLE)
+        public int EventID { get; set; }    // ^
     }
 
 }

@@ -18,12 +18,18 @@ namespace CRAH52_HFT_2021221.Models
         [Required]
         public string EventName { get; set; }
         [Required]
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         [Required]
         public string EventShortDesc { get; set; }  //Short description
 
-        public Events Eventss { get; set; }     //ˇ
-        [ForeignKey(nameof(Clubs))]             // 1:1 connections with Clubs table
-        public int ClubID { get; set; }         //^
+        [NotMapped]
+        public virtual Clubs Clubs { get; set; }
+        [ForeignKey(nameof(Clubs))]
+        public int ClubID { get; set; }
+
+
+        
+
+        public virtual ICollection<Guests> Guests { get; set; }
     }
 }

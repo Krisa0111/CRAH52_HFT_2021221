@@ -23,13 +23,11 @@ namespace CRAH52_HFT_2021221.Models
         public int? BaseTicketPrice { get; set; }
         [Required]
         public int Capacity { get; set; }
-        [NotMapped]
-        public Clubs Club { get; set; }     // ˇ
-        [ForeignKey(nameof(Guests))]        // Navigation property 1 side ( GUESTS TABLE)
-        public int GuestID { get; set; }    // ^
 
-        [ForeignKey(nameof(Events))]
-        public int EventID { get; set; }
+
+        [NotMapped]
+        public virtual Events Events { get; set; }
+        
 
     }
 }
