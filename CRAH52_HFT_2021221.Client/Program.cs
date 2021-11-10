@@ -7,7 +7,9 @@ namespace CRAH52_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
+            
             Console.WriteLine("Hello");
+            Console.ReadLine();
         }
     }
 }
