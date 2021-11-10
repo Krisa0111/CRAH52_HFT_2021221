@@ -47,7 +47,7 @@ namespace CRAH52_HFT_2021221.Repository
             Clubs old = Context
                 .Clubs
                 .FirstOrDefault(x => x.ClubID == club.ClubID);
-            if (old != null)
+            if (old != null) //TEST THIS NULL CHECK, IMPORTANT!!! 
             {
                 old.BaseTicketPrice = club.BaseTicketPrice;
                 old.Capacity = club.Capacity;
