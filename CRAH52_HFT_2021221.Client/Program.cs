@@ -7,7 +7,7 @@ namespace CRAH52_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
-            
+            ClubsDbContext ctx = new ClubsDbContext();
             Console.WriteLine("Hello");
             Console.ReadLine();
         }
