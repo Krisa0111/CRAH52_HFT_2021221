@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Moq" Version="4.16.1" />
+    <PackageReference Include="NUnit" Version="3.13.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CRAH52_HFT_2021221.Logic\CRAH52_HFT_2021221.Logic.csproj" />
     <ProjectReference Include="..\CRAH52_HFT_2021221.Models\CRAH52_HFT_2021221.Models.csproj" />
     <ProjectReference Include="..\CRAH52_HFT_2021221.Repository\CRAH52_HFT_2021221.Repository.csproj" />
