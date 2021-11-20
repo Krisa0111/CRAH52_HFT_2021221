@@ -21,20 +21,14 @@ namespace CRAH52_HFT_2021221.Logic
             repo.Delete(id);
         }
 
-        public IEnumerable<Events> EventWithTheYoungestPerson()
-        {
-            //return repo.ReadAll()
-            //    .Select(x=>x)
-            //    .Where(y=>y.Guests)
-                throw new NotImplementedException();
-        }
+        
 
         public IEnumerable<Events> MostExpensiveEvents()
         {
-            //return repo.ReadAll()
-            //    .Select(x=>x)
-            //    .Where(y=>y.Clubs.BaseTicketPrice)
-            throw new NotImplementedException();
+            return repo.ReadAll()
+                .Select(x => x)
+                .Where(y => y.Clubs.BaseTicketPrice == repo.ReadAll().Max(z => z.Clubs.BaseTicketPrice));
+            
         }
 
         public IQueryable<Events> ReadAll()
@@ -49,7 +43,11 @@ namespace CRAH52_HFT_2021221.Logic
 
         public IEnumerable<Events> TheMostPopularEvent()
         {
-            throw new NotImplementedException();
+            return repo.ReadAll()
+                .Select(x => x)
+                .Where(y => y.Guests.Count() == repo
+                    .ReadAll()
+                    .Max(z => z.Guests.Count));
         }
 
         public void Update(Events events)

@@ -35,5 +35,14 @@ namespace CRAH52_HFT_2021221.Logic
         {
             repo.Update(guest);
         }
+
+        public IEnumerable<Guests> YoungestPersonOnEvent(Events events)
+        {
+            return repo.ReadAll()
+                .Select(x => x)
+                .Where(y => y.BirthYear == repo
+                    .ReadAll()
+                    .Max(z => z.BirthYear) && y.Event.EventID == events.EventID);
+        }
     }
 }
