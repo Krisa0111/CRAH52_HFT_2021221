@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace CRAH52_HFT_2021221.Logic
 {
-    interface IGuestsLogic
+    public interface IGuestsLogic
     {
         void Create(Guests guest);
         Guests ReadOne(int id);
         IQueryable<Guests> ReadAll();
         void Update(Guests guest);
         void Delete(int id);
+        public IEnumerable<Guests> YoungestPersonOnEvent(Events events);
         
 
     }

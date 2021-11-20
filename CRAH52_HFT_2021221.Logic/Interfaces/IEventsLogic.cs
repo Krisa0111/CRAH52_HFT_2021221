@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CRAH52_HFT_2021221.Logic
 {
-    interface IEventsLogic
+    public interface IEventsLogic
     {
         void Create(Events events);
         Events ReadOne(int id);
@@ -17,7 +17,7 @@ namespace CRAH52_HFT_2021221.Logic
         //NONCRUD
         IEnumerable<Events> MostExpensiveEvents(); // according to the clubs base price
         IEnumerable<Events> TheMostPopularEvent();
-        IEnumerable<Events> EventWithTheYoungestPerson();
+        
         
     }
 }

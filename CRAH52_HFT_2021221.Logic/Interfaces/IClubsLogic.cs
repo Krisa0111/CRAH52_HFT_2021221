@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CRAH52_HFT_2021221.Logic
 {
-    interface IClubsLogic
+    public interface IClubsLogic
     {
         void Create(Clubs club);
         Clubs ReadOne(int id);
