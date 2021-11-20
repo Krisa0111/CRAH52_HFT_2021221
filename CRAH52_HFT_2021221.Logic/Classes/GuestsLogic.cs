@@ -13,7 +13,15 @@ namespace CRAH52_HFT_2021221.Logic
         IGuestsRepository repo;
         public void Create(Guests guest)
         {
-            repo.Create(guest);
+            if (guest.GuestID<0)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            else
+            {
+                repo.Create(guest);
+            }
+            
         }
 
         public void Delete(int id)

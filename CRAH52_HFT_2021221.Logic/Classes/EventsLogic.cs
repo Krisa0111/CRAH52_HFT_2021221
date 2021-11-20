@@ -13,7 +13,15 @@ namespace CRAH52_HFT_2021221.Logic
         IEventsRepository repo;
         public void Create(Events events)
         {
-            repo.Create(events);
+            if (events.ClubID<0)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            else
+            {
+                repo.Create(events);
+            }
+            
         }
 
         public void Delete(int id)

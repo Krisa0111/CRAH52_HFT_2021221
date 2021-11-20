@@ -17,13 +17,22 @@ namespace CRAH52_HFT_2021221.Logic
         }
         public IEnumerable<Clubs> ClubsThatHeldEventsInTheSummer()
         {
-            return repo.ReadAll().Where(x => x.Events.Date[5] == '0' && x.Events.Date[6] == '6' || x.Events.Date[6] == '7' || x.Events.Date[6] == '8')
+            var result =repo.ReadAll().Where(x => x.Events.Date[5] == '0' && x.Events.Date[6] == '6' || x.Events.Date[6] == '7' || x.Events.Date[6] == '8')
                                  .Select(y => y);
+            return result;
         }
 
         public void Create(Clubs club)
         {
-            repo.Create(club);
+            if (club.ClubID<0)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            else
+            {
+                repo.Create(club);
+            }
+            
         }
 
         public void Delete(int id)
