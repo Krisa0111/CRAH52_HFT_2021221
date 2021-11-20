@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CRAH52_HFT_2021221.Logic
 {
-    class ClubsLogic : IClubsLogic
+    public class ClubsLogic : IClubsLogic
     {
         IClubsRepository repo;
         public ClubsLogic(IClubsRepository clubsRepository)

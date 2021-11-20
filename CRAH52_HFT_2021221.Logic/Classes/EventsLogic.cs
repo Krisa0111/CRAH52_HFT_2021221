@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CRAH52_HFT_2021221.Logic
 {
-    class EventsLogic : IEventsLogic
+    public class EventsLogic : IEventsLogic
     {
         IEventsRepository repo;
         public void Create(Events events)

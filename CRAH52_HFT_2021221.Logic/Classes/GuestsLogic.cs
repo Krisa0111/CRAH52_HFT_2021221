@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CRAH52_HFT_2021221.Logic
 {
-    class GuestsLogic : IGuestsLogic
+    public class GuestsLogic : IGuestsLogic
     {
         IGuestsRepository repo;
         public void Create(Guests guest)
