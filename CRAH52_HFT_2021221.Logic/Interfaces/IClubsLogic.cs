@@ -16,5 +16,6 @@ namespace CRAH52_HFT_2021221.Logic
         void Delete(int id);
         //NONCRUD
         IEnumerable<Clubs> TheMostPopularCLub(); //within the number of events
+        IEnumerable<Clubs> ClubsThatHeldEventsInTheSummer();
     }
 }
