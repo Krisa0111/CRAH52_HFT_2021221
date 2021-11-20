@@ -27,7 +27,17 @@ namespace CRAH52_HFT_2021221.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<Clubs>(entity =>
+            {
+                
+                entity.HasOne(x => x.Events)
+                .WithOne(y => y.Clubs)
+                .HasForeignKey<Events>(x => x.ClubID);
+            });
+                
+
+
+
             //It may differ from reality
             Clubs Otkert = new Clubs() { ClubID = 1, ClubName = "Ötkert", BaseTicketPrice = 2000, Capacity = 500, President = "unkown", ShortDesc = "Mainly hip-hop rnb music but they play techno in a smaller room" };
             Clubs Peaches = new Clubs { ClubID = 2, ClubName = "Peaches and Cream", BaseTicketPrice = 4000, Capacity = 300, President = "Pap Gergely", ShortDesc = "Unlimited drink consumption is included in the price, mainly rnb music" };
@@ -35,11 +45,15 @@ namespace CRAH52_HFT_2021221.Data
             Clubs Heaven = new Clubs { ClubID = 4, ClubName = "Heaven", BaseTicketPrice = 3000, Capacity = 700, President = "unkown", ShortDesc = "Spacious spaces with techno and hip-hop music" ,};
             Clubs Cat = new Clubs { ClubID = 5, ClubName = "Cat Budapest", BaseTicketPrice = 2000, Capacity = 300, President = "unkown", ShortDesc = "Techno music, nice ligh equipment" };
 
-            Events Coronita = new Events { EventID = 1, ClubID = Cat.ClubID, Date = "2021 10 05", EventName = "Coronita after party", EventShortDesc = "Techno music from 5 am till 13 pm" };
+            
+            Events LLJuniorNight = new Events { EventID = 1, ClubID = Peaches.ClubID, Date = "2021 09 13", EventName = "LL Junior in Peaches", EventShortDesc = "LL Junior performed hungarian music" };
             Events Neccparty = new Events { EventID = 2, ClubID = Akvarium.ClubID, Date = "2021 09 24", EventName = "Neccparty by Spanis wax", EventShortDesc = "All kinds of gas music" };
-            Events LLJuniorNight = new Events { EventID = 3, ClubID = Peaches.ClubID, Date = "2021 09 13", EventName = "LL Junior in Peaches", EventShortDesc = "LL Junior performed hungarian music" };
-            Events Krubi = new Events { EventID = 4, ClubID = Akvarium.ClubID, Date = "2021 08 10", EventName = "Krúbi in Akvárium big hall", EventShortDesc = "Krúbi performed in Club Akvarium" };
+            Events Krubi = new Events { EventID = 3, ClubID = Heaven.ClubID, Date = "2021 08 10", EventName = "Krúbi in Heaven", EventShortDesc = "Krúbi performed in Club Heaven" };
+            Events Coronita = new Events { EventID = 4, ClubID = Cat.ClubID, Date = "2021 10 05", EventName = "Coronita after party", EventShortDesc = "Techno music from 5 am till 13 pm" };
             Events OneDance = new Events { EventID = 5, ClubID = Otkert.ClubID, Date = "2021 10 01", EventName = "OnceDance", EventShortDesc = "OneDance is party series arranged every Thursday" };
+
+
+
 
             Guests Bela = new Guests { GuestID = 1, Name = "Nagy Béla", BirthYear = 2000, Email = "nagy.bela00@gmail.com",EventID = Coronita.EventID };
             Guests Akos = new Guests { GuestID = 2, Name = "Kis Ákos", BirthYear = 1999, Email = "kis.akos99@gmail.com", EventID = Coronita.EventID };
