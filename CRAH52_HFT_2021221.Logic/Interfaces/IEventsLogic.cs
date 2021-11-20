@@ -16,6 +16,8 @@ namespace CRAH52_HFT_2021221.Logic
         void Delete(int id);
         //NONCRUD
         IEnumerable<Events> MostExpensiveEvents(); // according to the clubs base price
+        IEnumerable<Events> TheMostPopularEvent();
+        IEnumerable<Events> EventWithTheYoungestPerson();
         
     }
 }
