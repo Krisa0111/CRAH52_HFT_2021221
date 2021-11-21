@@ -1,4 +1,6 @@
 ﻿using CRAH52_HFT_2021221.Logic;
+using CRAH52_HFT_2021221.Models;
+using CRAH52_HFT_2021221.Repository;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -13,22 +15,77 @@ namespace CRAH52_HFT_2021221.Test
     class EventsLogicTest
     {
         IEventsLogic eventsLogic;
-        public void Setup()
+        Mock<IEventsRepository> mockrepo = new Mock<IEventsRepository>();
+
+        public EventsLogicTest()
         {
-            Mock<IEventsLogic> mockrepo = new Mock<IEventsLogic>();   
+            Clubs otkert = new Clubs { BaseTicketPrice = 4000, ClubID = 1 };
+            Clubs peaches = new Clubs { BaseTicketPrice = 6000, ClubID = 2 };
+            Clubs heaven = new Clubs { BaseTicketPrice = 10000, ClubID = 3 };
+            
+            var events = new List<Events>()
+            {
+                new Events()
+                {
+                    EventID=1,
+                    ClubID=1,
+                    Clubs = otkert,
+                    Guests = new List<Guests>()
+                    {
+                        new Guests {GuestID =1},
+                        new Guests {GuestID =2},
+                        new Guests {GuestID =3}
+                    }
+                },
+                new Events()
+                {
+                    EventID=2,
+                    ClubID=2,
+                    Clubs = peaches,
+                    Guests = new List<Guests>()
+                    {
+                        new Guests {GuestID =1},
+                        new Guests {GuestID =3}
+                    }
+                },
+                new Events()
+                {
+                    EventID=3,
+                    ClubID=3,
+                    Clubs = heaven,
+                    Guests = new List<Guests>()
+                    {
+                        new Guests {GuestID =1},
+                        new Guests {GuestID =3}
+                    }
+                }
+            }.AsQueryable();
+            mockrepo.Setup(y => y.ReadAll()).Returns(events);
+            eventsLogic = new EventsLogic(mockrepo.Object);
+
         }
+        
         [Test]
         public void CheckCreate()
         {
-
+            Assert.That(() => eventsLogic.Create(new Events { EventID = -1 }), Throws.Exception);
         }
+        [Test]
         public void CheckTheMostPopularEvent()
         {
-
+            //ACT
+            var result = eventsLogic.TheMostPopularEvent();
+            //ASSERT
+            Assert.That(result.FirstOrDefault().EventID, Is.EqualTo(1));
+            
         }
+        [Test]
         public void CheckMostExpensiveEvents()
         {
-
+            //ACT
+            var result = eventsLogic.MostExpensiveEvents();
+            //ASSERT
+            Assert.That(result.FirstOrDefault().EventID, Is.EqualTo(3));
         }
         
     }

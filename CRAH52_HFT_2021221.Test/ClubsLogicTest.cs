@@ -15,50 +15,87 @@ namespace CRAH52_HFT_2021221.Test
     class ClubsLogicTest
     {
         IClubsLogic clubsLogic;
-        
-        
-        public void Setup()
-        {
-            Mock<IClubsRepository> mockrepo = new Mock<IClubsRepository>();
-            Clubs otkert = new Clubs { ClubID = 1,};
-            Clubs madam = new Clubs { ClubID = 2 };
-            Clubs yellow = new Clubs { ClubID = 3 };
+        Mock<IClubsRepository> mockrepo = new Mock<IClubsRepository>();
 
-            Events onedance = new Events { ClubID = otkert.ClubID, Date = "2021 06 05", Clubs = otkert };
-            Events onenight = new Events { ClubID = madam.ClubID, Date = "2021 07 05", Clubs = madam };
-            Events yellownight = new Events { ClubID = yellow.ClubID, Date = "2021 01 25", Clubs = yellow };
-            Events girlsnight = new Events { ClubID = yellow.ClubID, Date = "2021 10 05", Clubs = yellow };
+        public ClubsLogicTest()
+        {
             
-            otkert.Events = onedance;
-            madam.Events = onenight;
-            yellow.Events = yellownight;
-            yellow.Events = girlsnight;
-            mockrepo.Setup(x => x.ReadAll())
-                .Returns(new List<Clubs>()
-                {otkert,madam,yellow
-                }.AsQueryable());
+            Events onedance = new Events { Date = "2021 07 05" };
+            var clubs = new List<Clubs>()
+            {
+                new Clubs()
+                {
+                    ClubID =1,
+                    ClubName="ötkert",
+                    BaseTicketPrice =3000,
+                    Events= new Events()
+                    {
+                        ClubID=1,
+                        Date = "2021 06 11",
+                        EventName = "onedance"
+                    }
+
+                },
+                new Clubs()
+                {
+                    ClubID = 2,
+                    ClubName="peaches",
+                    BaseTicketPrice=2000,
+                    Events = new Events()
+                    {
+                        ClubID=2,
+                        Date = "2021 12 10",
+                        EventName= "lljuniornight"
+                    }
+                },
+                new Clubs()
+                {
+                    ClubID =3,
+                    ClubName="cat",
+                    BaseTicketPrice = 10000,
+                    Events = new Events()
+                    {
+                        ClubID =3,
+                        Date = "2021 07 30",
+                        EventName ="coronita"
+                    }
+                }
+            }.AsQueryable();
+
+            mockrepo.Setup(x => x.ReadOne(1)).Returns(new Clubs() { ClubID = 1 });
+            mockrepo.Setup(y => y.ReadAll()).Returns(clubs);
             clubsLogic = new ClubsLogic(mockrepo.Object);
         }
-
+        [Test]
+        public void CheckReadOne()
+        {
+            var result = clubsLogic.ReadOne(1);
+            Assert.That(result.ClubID, Is.EqualTo(1));
+        }
 
 
         [Test]
         public void CheckTheMostPopularCLub()
         {
             //ACT
+            var result = clubsLogic.TheMostPopularCLub();
+            //ASSERT
+            Assert.That(result.FirstOrDefault().ClubID, Is.EqualTo(1));
+            
+        }
+        [Test]
+        public void CheckClubsThatHeldEventsInTheSummer()
+        {
+            
+            //ACT
             var result = clubsLogic.ClubsThatHeldEventsInTheSummer();
             //ASSERT
-            Assert.That(result.FirstOrDefault().ClubID, Is.EqualTo(3));
+            Assert.That(result.FirstOrDefault().ClubID, Is.EqualTo(1));
         }
-        //[Test]
-        //public void CheckClubsThatHeldEventsInTheSummer()
-        //{
-
-        //}
-        //[Test]
-        //public void CheckCreate()
-        //{
-
-        //}
+        [Test]
+        public void CheckCreate()
+        {
+            Assert.That(() => clubsLogic.Create(new Clubs { ClubID = -1 }), Throws.Exception);
+        }
     }
 }
