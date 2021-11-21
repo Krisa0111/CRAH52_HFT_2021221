@@ -11,9 +11,13 @@ namespace CRAH52_HFT_2021221.Logic
     public class EventsLogic : IEventsLogic
     {
         IEventsRepository repo;
+        public EventsLogic(IEventsRepository eventsRepository)
+        {
+            this.repo = eventsRepository;
+        }
         public void Create(Events events)
         {
-            if (events.ClubID<0)
+            if (events.EventID<0)
             {
                 throw new IndexOutOfRangeException();
             }
@@ -28,8 +32,6 @@ namespace CRAH52_HFT_2021221.Logic
         {
             repo.Delete(id);
         }
-
-        
 
         public IEnumerable<Events> MostExpensiveEvents()
         {

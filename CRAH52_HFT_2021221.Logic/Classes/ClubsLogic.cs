@@ -17,8 +17,9 @@ namespace CRAH52_HFT_2021221.Logic
         }
         public IEnumerable<Clubs> ClubsThatHeldEventsInTheSummer()
         {
-            var result =repo.ReadAll().Where(x => x.Events.Date[5] == '0' && x.Events.Date[6] == '6' || x.Events.Date[6] == '7' || x.Events.Date[6] == '8')
-                                 .Select(y => y);
+
+            var result = repo.ReadAll().Select(y => y).Where(x => x.Events.Date[5] == '0' && x.Events.Date[6] == '6' || x.Events.Date[6] == '7' || x.Events.Date[6] == '8');
+                                 
             return result;
         }
 

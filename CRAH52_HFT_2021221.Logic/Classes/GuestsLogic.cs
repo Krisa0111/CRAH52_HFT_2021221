@@ -11,6 +11,10 @@ namespace CRAH52_HFT_2021221.Logic
     public class GuestsLogic : IGuestsLogic
     {
         IGuestsRepository repo;
+        public GuestsLogic(IGuestsRepository guestsRepository)
+        {
+            repo = guestsRepository;
+        }
         public void Create(Guests guest)
         {
             if (guest.GuestID<0)
@@ -28,6 +32,8 @@ namespace CRAH52_HFT_2021221.Logic
         {
             repo.Delete(id);
         }
+
+        
 
         public IQueryable<Guests> ReadAll()
         {
@@ -50,7 +56,8 @@ namespace CRAH52_HFT_2021221.Logic
                 .Select(x => x)
                 .Where(y => y.BirthYear == repo
                     .ReadAll()
-                    .Max(z => z.BirthYear) && y.Event.EventID == events.EventID);
+                    .Max(z => z.BirthYear)
+                 && y.Event.EventID == events.EventID);
         }
     }
 }
