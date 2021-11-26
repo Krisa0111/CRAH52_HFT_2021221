@@ -1,6 +1,10 @@
+using CRAH52_HFT_2021221.Data;
+using CRAH52_HFT_2021221.Logic;
+using CRAH52_HFT_2021221.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -12,10 +16,26 @@ namespace CRAH52_HFT_2021221.Endpoint
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        public IConfiguration Configuration { get; }
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
+
+            services.AddTransient<IClubsLogic, ClubsLogic>();
+            services.AddTransient<IEventsLogic, EventsLogic>();
+            services.AddTransient<IGuestsLogic, GuestsLogic>();
+
+            services.AddTransient<IClubsRepository, ClubsRepository>();
+            services.AddTransient<IEventsRepository, EventsRepository>();
+            services.AddTransient<IGuestsRepository, GuestsRepository>();
+
+            services.AddTransient<ClubsDbContext, ClubsDbContext>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -25,15 +45,16 @@ namespace CRAH52_HFT_2021221.Endpoint
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/error");
+            }
 
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }
