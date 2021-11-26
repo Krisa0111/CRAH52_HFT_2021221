@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace CRAH52_HFT_2021221.Models
@@ -23,6 +24,7 @@ namespace CRAH52_HFT_2021221.Models
         public string EventShortDesc { get; set; }  //Short description
 
         [NotMapped]
+        [JsonIgnore]
         public virtual Clubs Clubs { get; set; }
         [ForeignKey(nameof(Clubs))]
         public int ClubID { get; set; }
