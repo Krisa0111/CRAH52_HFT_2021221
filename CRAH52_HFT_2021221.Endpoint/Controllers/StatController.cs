@@ -1,11 +1,11 @@
 ﻿using CRAH52_HFT_2021221.Logic;
+using CRAH52_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace CRAH52_HFT_2021221.Endpoint.Controllers
 {
@@ -22,7 +22,32 @@ namespace CRAH52_HFT_2021221.Endpoint.Controllers
             this.gl = gl;
             this.el = el;
         }
-        //[HttpGet]
-        //public 
+        [HttpGet]
+        public IEnumerable<Clubs> ClubsThatHeldEventsInTheSummer()
+        {
+            return cl.ClubsThatHeldEventsInTheSummer();
+        }
+        [HttpGet]
+        public IEnumerable<Events> MostExpensiveEvents()
+        {
+            return el.MostExpensiveEvents();
+        }
+        [HttpGet]
+        public IEnumerable<Events> TheMostPopularEvent()
+        {
+            return el.TheMostPopularEvent();
+        }
+        [HttpGet]
+        public IEnumerable<Events> EventsWithPresident()
+        {
+            return el.EventsWithPresident();
+        }
+        [HttpGet]
+        public IEnumerable<Guests> YoungestPersonOnCoronita()
+        {
+            return gl.YoungestPersonOnCoronita();
+        }
+
+
     }
 }
