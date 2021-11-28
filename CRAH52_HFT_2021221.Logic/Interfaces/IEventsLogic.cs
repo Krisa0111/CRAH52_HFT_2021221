@@ -17,6 +17,7 @@ namespace CRAH52_HFT_2021221.Logic
         //NONCRUD
         IEnumerable<Events> MostExpensiveEvents(); // according to the clubs base price
         IEnumerable<Events> TheMostPopularEvent();
+        IEnumerable<Events> EventsWithPresident();
         
         
     }

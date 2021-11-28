@@ -40,6 +40,12 @@ namespace CRAH52_HFT_2021221.Logic
                 .Where(y => y.Clubs.BaseTicketPrice == repo.ReadAll().Max(z => z.Clubs.BaseTicketPrice));
             
         }
+        public IEnumerable<Events> EventsWithPresident()
+        {
+            return repo.ReadAll()
+                .Select(x => x)
+                .Where(y => y.Clubs.President != "unkown");
+        }
 
         public IQueryable<Events> ReadAll()
         {
@@ -55,9 +61,9 @@ namespace CRAH52_HFT_2021221.Logic
         {
             return repo.ReadAll()
                 .Select(x => x)
-                .Where(y => y.Guests.Count() == repo
+                .Where(y => y.Guests.ToList().Count() == repo
                     .ReadAll()
-                    .Max(z => z.Guests.Count));
+                    .Max(z => z.Guests.ToList().Count()));
         }
 
         public void Update(Events events)

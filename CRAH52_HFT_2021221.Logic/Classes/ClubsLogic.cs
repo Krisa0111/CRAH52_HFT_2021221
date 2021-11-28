@@ -51,19 +51,6 @@ namespace CRAH52_HFT_2021221.Logic
             return repo.ReadOne(id);
         }
 
-        public IEnumerable<Clubs> TheMostPopularCLub()//TEST THIS
-        {
-            return repo.ReadAll()
-                .Select(x => new
-                {
-                    _CLUB = x,
-                    _Eventscount = repo.ReadAll()
-                    .Where(y => y.Events.ClubID == x.ClubID)
-                    .Count()
-                })
-                .OrderByDescending(x => x._Eventscount)
-                .Select(x => x._CLUB);
-        }
         public void Update(Clubs club)
         {
             repo.Update(club);

@@ -14,7 +14,8 @@ namespace CRAH52_HFT_2021221.Logic
         IQueryable<Guests> ReadAll();
         void Update(Guests guest);
         void Delete(int id);
-        public IEnumerable<Guests> YoungestPersonOnEvent(Events events);
+        //NONCRUD
+        public IEnumerable<Guests> YoungestPersonOnCoronita();
         
         
 
