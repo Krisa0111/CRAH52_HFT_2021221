@@ -74,15 +74,7 @@ namespace CRAH52_HFT_2021221.Test
         }
 
 
-        [Test]
-        public void CheckTheMostPopularCLub()
-        {
-            //ACT
-            var result = clubsLogic.TheMostPopularCLub();
-            //ASSERT
-            Assert.That(result.FirstOrDefault().ClubID, Is.EqualTo(1));
-            
-        }
+        
         [Test]
         public void CheckClubsThatHeldEventsInTheSummer()
         {

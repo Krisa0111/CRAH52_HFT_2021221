@@ -19,26 +19,26 @@ namespace CRAH52_HFT_2021221.Test
         
         public GuestLogicTest()
         {
-            Events onedance = new Events { EventID = 1 };
+            Events coronita = new Events { EventID = 4 ,EventName="Coronita"};
             var guest = new List<Guests>()
             {
                 new Guests()
                 {
                     GuestID=1,
                     BirthYear=2000,
-                    Event = onedance
+                    Event = coronita
                 },
                 new Guests()
                 {
                     GuestID=2,
                     BirthYear=1965,
-                    Event = onedance
+                    Event = coronita
                 },
                 new Guests()
                 {
                     GuestID=3,
                     BirthYear=1967,
-                    Event = onedance
+                    Event = coronita
                 }
             }.AsQueryable();
             mockrepo.Setup(y => y.ReadOne(1)).Returns(new Guests() { GuestID = 1 });
@@ -51,31 +51,9 @@ namespace CRAH52_HFT_2021221.Test
             Assert.That(() => guestsLogic.Create(new Guests { GuestID = -1 }), Throws.Exception);
         }
         [Test]
-        public void CheckYoungestPersonOnEvent()
+        public void CheckYoungestPersonOnCoronita()
         {
-            Events onedance = new Events { EventID = 1 };
-            var guest = new List<Guests>()
-            {
-                new Guests()
-                {
-                    GuestID=1,
-                    BirthYear=2000,
-                    Event = onedance
-                },
-                new Guests()
-                {
-                    GuestID=2,
-                    BirthYear=1965,
-                    Event = onedance
-                },
-                new Guests()
-                {
-                    GuestID=3,
-                    BirthYear=1967,
-                    Event = onedance
-                }
-            };
-            var result = guestsLogic.YoungestPersonOnEvent(onedance);
+            var result = guestsLogic.YoungestPersonOnCoronita();
             Assert.That(result.FirstOrDefault().GuestID, Is.EqualTo(1));
         }
         [Test]

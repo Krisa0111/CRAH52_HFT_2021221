@@ -19,9 +19,9 @@ namespace CRAH52_HFT_2021221.Test
 
         public EventsLogicTest()
         {
-            Clubs otkert = new Clubs { BaseTicketPrice = 4000, ClubID = 1 };
-            Clubs peaches = new Clubs { BaseTicketPrice = 6000, ClubID = 2 };
-            Clubs heaven = new Clubs { BaseTicketPrice = 10000, ClubID = 3 };
+            Clubs otkert = new Clubs { BaseTicketPrice = 4000, ClubID = 1, President="unkown" };
+            Clubs peaches = new Clubs { BaseTicketPrice = 6000, ClubID = 2, President="Papp Gergely" };
+            Clubs heaven = new Clubs { BaseTicketPrice = 10000, ClubID = 3, President="unkown" };
             
             var events = new List<Events>()
             {
@@ -86,6 +86,12 @@ namespace CRAH52_HFT_2021221.Test
             var result = eventsLogic.MostExpensiveEvents();
             //ASSERT
             Assert.That(result.FirstOrDefault().EventID, Is.EqualTo(3));
+        }
+        [Test]
+        public void CheckEventsWithPresident()
+        {
+            var result = eventsLogic.EventsWithPresident();
+            Assert.That(result.FirstOrDefault().EventID, Is.EqualTo(2));
         }
         
     }
