@@ -109,7 +109,7 @@ namespace CRAH52_HFT_2021221.Client
             var clubs = restService.Get<Clubs>("clubs");
             foreach (var item in clubs)
             {
-                Console.WriteLine(item.ClubName);
+                Console.WriteLine(item.ToString());
             }
             Console.ReadLine();
 
@@ -120,12 +120,13 @@ namespace CRAH52_HFT_2021221.Client
             Console.WriteLine("Give a club Id: ");
             int id = int.Parse(Console.ReadLine());
             var club = restService.Get<Clubs>(id, "clubs");
-            Console.WriteLine("Name: "+ club.ClubName + " Id: " + club.ClubID);
+            Console.WriteLine(club.ToString());
             Console.ReadLine();
         } // DONE
         private static void UpdateClub()
         {
             RestService restService = new RestService("http://localhost:30907");
+            
             
         } // NEM JO
         private static void DeleteClub()
@@ -139,10 +140,13 @@ namespace CRAH52_HFT_2021221.Client
         {
             RestService restService = new RestService("http://localhost:30907");
             var result = restService.Get<Clubs>("stat/clubsthatheldeventsinthesummer");
-            Console.WriteLine(result.Count);
+            foreach (var item in result)
+            {
+                Console.WriteLine(item.ToString());
+            }
             Console.ReadLine();
             
-        } // NEM JO
+        } // DONE
 
 
         private static void CreateEvent()
@@ -171,7 +175,7 @@ namespace CRAH52_HFT_2021221.Client
             var events = restService.Get<Events>("events");
             foreach (var item in events)
             {
-                Console.WriteLine(item.EventName);
+                Console.WriteLine(item.ToString());
             }
             Console.ReadLine();
         } // DONE
@@ -181,7 +185,7 @@ namespace CRAH52_HFT_2021221.Client
             Console.WriteLine("Give an event Id: ");
             int id = int.Parse(Console.ReadLine());
             var events = restService.Get<Events>(id, "events");
-            Console.WriteLine("Name: " + events.EventName+" Id: " + events.EventID);
+            Console.WriteLine(events.ToString());
             Console.ReadLine();
         } // DONE
         private static void UpdateEvent()
@@ -202,7 +206,7 @@ namespace CRAH52_HFT_2021221.Client
             var result = restService.Get<Events>("stat/mostexpensiveevents");
             foreach (var item in result)
             {
-                Console.WriteLine(item.EventName);
+                Console.WriteLine(item.ToString());
             }
             Console.ReadLine();
         } // DONE
@@ -212,17 +216,17 @@ namespace CRAH52_HFT_2021221.Client
             var result = restService.Get<Events>("stat/themostpopularevent");
             foreach (var item in result)
             {
-                Console.WriteLine(item.EventName);
+                Console.WriteLine(item.ToString());
             }
             Console.ReadLine();
-        }
+        } // DONE
         private static void EventsWithPresident()
         {
             RestService restService = new RestService("http://localhost:30907/events");
             var result = restService.Get<Events>("stat/eventswithpresident");
             foreach (var item in result)
             {
-                Console.WriteLine(item.EventName);
+                Console.WriteLine(item.ToString());
             }
             Console.ReadLine();
         } // DONE
@@ -256,7 +260,7 @@ namespace CRAH52_HFT_2021221.Client
             var guests = restService.Get<Guests>("guests");
             foreach (var item in guests)
             {
-                Console.WriteLine(item.Name);
+                Console.WriteLine(item.ToString());
             }
             Console.ReadLine();
         } // DONE
@@ -266,7 +270,7 @@ namespace CRAH52_HFT_2021221.Client
             Console.WriteLine("Give an ID: ");
             int id = int.Parse(Console.ReadLine());
             var guest = restService.Get<Guests>(id, "guests");
-            Console.WriteLine("Name: " + guest.Name +" Id: " +guest.GuestID);
+            Console.WriteLine(guest.ToString());
             Console.ReadLine();
         } // DONE
         private static void UpdateGuest()
@@ -284,8 +288,11 @@ namespace CRAH52_HFT_2021221.Client
         {
             RestService restService = new RestService("http://localhost:30907");
             var result = restService.Get<Guests>("stat/youngestpersononcoronita");
-            Console.WriteLine(result.Count);
+            foreach (var item in result)
+            {
+                Console.WriteLine(item.ToString());
+            }
             Console.ReadLine();
-        } // nem jo
+        } // DONE
     }
 }
