@@ -1,5 +1,6 @@
 ﻿using CRAH52_HFT_2021221.Models;
 using CRAH52_HFT_2021221.Repository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,11 +53,10 @@ namespace CRAH52_HFT_2021221.Logic
 
         public IEnumerable<Guests> YoungestPersonOnCoronita()
         {
-            return repo.ReadAll()
-                .Select(x => x)
-                .Where(y => y.BirthYear == repo
-                    .ReadAll().Max(z => z.BirthYear)
-                 && y.Event.EventID == 4);
+            yield return repo.ReadAll()
+                            .Select(x => x)
+                            .Where(y => y.Event.EventName.ToUpper() == "CORONITA")
+                            .OrderByDescending(y => y.BirthYear).ToList().First();
         }
     }
 }

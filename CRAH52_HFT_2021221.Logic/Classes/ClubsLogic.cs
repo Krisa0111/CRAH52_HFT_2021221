@@ -1,5 +1,6 @@
 ﻿using CRAH52_HFT_2021221.Models;
 using CRAH52_HFT_2021221.Repository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,11 @@ namespace CRAH52_HFT_2021221.Logic
         public IEnumerable<Clubs> ClubsThatHeldEventsInTheSummer()
         {
 
-            var result = repo.ReadAll().Select(y => y).Where(x => x.Events.Date[5] == '0' && x.Events.Date[6] == '6' || x.Events.Date[6] == '7' || x.Events.Date[6] == '8');
+            var result = repo.ReadAll()
+                .Include("Events")
+                .AsEnumerable()
+                .Select(y => y)
+                .Where(x =>x!= null && x.Events!= null && x.Events.Date[5] == '0' && (x.Events.Date[6] == '6' || x.Events.Date[6] == '7' || x.Events.Date[6] == '8')).ToList();
                                  
             return result;
         }

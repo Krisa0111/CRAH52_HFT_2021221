@@ -27,7 +27,12 @@ namespace CRAH52_HFT_2021221.Models
 
         [NotMapped]
         public virtual Events Events { get; set; }
-        
+        public override string ToString()
+        {
+            return ("ClubID: "+ ClubID + " ClubName: " + ClubName + " Capacity: " + Capacity + " BaseTicketPrice: " + BaseTicketPrice + " President: " + President
+                + " Short description " + ShortDesc);
+        }
 
     }
+    
 }

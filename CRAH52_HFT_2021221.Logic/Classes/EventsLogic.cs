@@ -1,5 +1,6 @@
 ﻿using CRAH52_HFT_2021221.Models;
 using CRAH52_HFT_2021221.Repository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,10 +61,11 @@ namespace CRAH52_HFT_2021221.Logic
         public IEnumerable<Events> TheMostPopularEvent()
         {
             return repo.ReadAll()
+                .Include("Guests")
+                .AsEnumerable()
                 .Select(x => x)
-                .Where(y => y.Guests.ToList().Count() == repo
-                    .ReadAll()
-                    .Max(z => z.Guests.ToList().Count()));
+                .GroupBy(y => y.Guests.Count())
+                .Last();
         }
 
         public void Update(Events events)

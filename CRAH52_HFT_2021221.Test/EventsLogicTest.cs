@@ -44,8 +44,8 @@ namespace CRAH52_HFT_2021221.Test
                     Clubs = peaches,
                     Guests = new List<Guests>()
                     {
-                        new Guests {GuestID =1},
-                        new Guests {GuestID =3}
+                        new Guests {GuestID =4},
+                        new Guests {GuestID =5}
                     }
                 },
                 new Events()
@@ -55,8 +55,10 @@ namespace CRAH52_HFT_2021221.Test
                     Clubs = heaven,
                     Guests = new List<Guests>()
                     {
-                        new Guests {GuestID =1},
-                        new Guests {GuestID =3}
+                        new Guests {GuestID =6},
+                        new Guests {GuestID =7},
+                        new Guests {GuestID =8},
+                        new Guests {GuestID =9},
                     }
                 }
             }.AsQueryable();
@@ -76,7 +78,7 @@ namespace CRAH52_HFT_2021221.Test
             //ACT
             var result = eventsLogic.TheMostPopularEvent();
             //ASSERT
-            Assert.That(result.FirstOrDefault().EventID, Is.EqualTo(1));
+            Assert.That(result.FirstOrDefault().EventID, Is.EqualTo(3));
             
         }
         [Test]

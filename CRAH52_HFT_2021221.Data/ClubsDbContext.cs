@@ -22,7 +22,7 @@ namespace CRAH52_HFT_2021221.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseLazyLoadingProxies().UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ClubsDb.mdf;Integrated Security=True");
+                optionsBuilder.UseLazyLoadingProxies().UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ClubsDb.mdf;Integrated Security=True;MultipleActiveResultSets=true");
             }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -64,7 +64,7 @@ namespace CRAH52_HFT_2021221.Data
             Guests Abraham = new Guests { GuestID = 7, Name = "Lelkes Ábrahám", BirthYear = 1989, Email = "lelkesabraham@freemail.hu", EventID = Neccparty.EventID };
             Guests Jozsef = new Guests { GuestID = 8, Name = "Nagy József", BirthYear = 1985, Email = "nagy.jozsef85@gmail.com",EventID = Coronita.EventID };
 
-            modelBuilder.Entity<Clubs>().HasData(Otkert, Peaches, Akvarium, Heaven, Cat, Mousoleum);
+            modelBuilder.Entity<Clubs>().HasData(Otkert, Peaches, Akvarium, Heaven, Cat,Mousoleum);
             modelBuilder.Entity<Events>().HasData(Coronita, Neccparty, LLJuniorNight, Krubi, OneDance);
             modelBuilder.Entity<Guests>().HasData(Bela, Akos, Zoltan, Bence, Roland, Zsolt, Abraham, Jozsef);
         }

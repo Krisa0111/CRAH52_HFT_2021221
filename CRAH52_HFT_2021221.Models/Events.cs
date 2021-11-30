@@ -28,10 +28,11 @@ namespace CRAH52_HFT_2021221.Models
         public virtual Clubs Clubs { get; set; }
         [ForeignKey(nameof(Clubs))]
         public int ClubID { get; set; }
-
-
-        
-
         public virtual ICollection<Guests> Guests { get; set; }
+
+        public override string ToString()
+        {
+            return ("EventID: "+ EventID +" EventName: " + EventName + " Date: " + Date + " Event Short Description: " +EventShortDesc);
+        }
     }
 }

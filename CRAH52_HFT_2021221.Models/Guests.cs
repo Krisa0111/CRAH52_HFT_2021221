@@ -26,6 +26,10 @@ namespace CRAH52_HFT_2021221.Models
         public virtual Events Event { get; set; }     // ˇ
         [ForeignKey(nameof(Events))]        // Navigation property 1 side ( GUESTS TABLE)
         public int EventID { get; set; }    // ^
+        public override string ToString()
+        {
+            return ("GuestID: " + GuestID + " Name: " + Name + " Email: " + Email + " Birthyear: " + BirthYear);
+        }
     }
 
 }
