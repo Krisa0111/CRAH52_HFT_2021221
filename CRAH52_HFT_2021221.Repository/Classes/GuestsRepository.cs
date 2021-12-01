@@ -57,9 +57,8 @@ namespace CRAH52_HFT_2021221.Repository
                 old.Event = guest.Event;
                 old.EventID = guest.EventID;
                 old.Name = guest.Name;
-                
-
             }
+            Context.SaveChanges();
         }
     }
 }

@@ -55,8 +55,15 @@ namespace CRAH52_HFT_2021221.Repository
                 old.Events = club.Events;
                 old.President = club.President;
                 old.ShortDesc = club.ShortDesc;
-                
             }
+            Context.SaveChanges();
+            //var oldclub = ReadOne(club.ClubID);
+            //oldclub.ClubName = club.ClubName;
+            //oldclub.ClubID = club.ClubID;
+            //oldclub.BaseTicketPrice = club.BaseTicketPrice;
+            //oldclub.Capacity = club.Capacity;
+            //oldclub.Events = club.Events;
+            //oldclub.ShortDesc = club.ShortDesc;
         }
     }
 }
