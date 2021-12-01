@@ -126,9 +126,30 @@ namespace CRAH52_HFT_2021221.Client
         private static void UpdateClub()
         {
             RestService restService = new RestService("http://localhost:30907");
+            Console.WriteLine("Enter a new ClubId: ");
+            int id = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter new Club name: ");
+            string name = Console.ReadLine();
+            Console.WriteLine("Enter the new name of the president or unkown: ");
+            string president = Console.ReadLine();
+            Console.WriteLine("Enter a new short description: ");
+            string shortdesc = Console.ReadLine();
+            Console.WriteLine("Enter a new base ticket price: ");
+            int ticket = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter the new capacity: ");
+            int capacity = int.Parse(Console.ReadLine());
+            restService.Put(new Clubs
+            {
+                ClubID = id,
+                ClubName = name,
+                President = president,
+                ShortDesc = shortdesc,
+                BaseTicketPrice = ticket,
+                Capacity = capacity
+            }, "clubs");
+            Console.WriteLine("updated");
             
-            
-        } // NEM JO
+        } //DONE
         private static void DeleteClub()
         {
             RestService restService = new RestService("http://localhost:30907");
@@ -190,7 +211,26 @@ namespace CRAH52_HFT_2021221.Client
         } // DONE
         private static void UpdateEvent()
         {
-
+            RestService restService = new RestService("http://localhost:30907/events");
+            Console.WriteLine("Enter new event Id: ");
+            int eventid = int.Parse(Console.ReadLine());
+            Console.WriteLine("Type in a new event name: ");
+            string eventname = Console.ReadLine();
+            Console.WriteLine("Add a new short description: ");
+            string shortdesc = Console.ReadLine();
+            Console.WriteLine("Add a new date in this format {yyyy mm dd}: ");
+            string date = Console.ReadLine();
+            Console.WriteLine("Add the new id of the club:              (id 6 is free)");
+            int id = int.Parse(Console.ReadLine());
+            restService.Put<Events>(new Events()
+            {
+                EventID =eventid,
+                EventName = eventname,
+                EventShortDesc = shortdesc,
+                Date = date,
+                ClubID = id
+            }, "events");
+            Console.WriteLine("updated");
         }
         private static void DeleteEvent()
         {
@@ -275,8 +315,27 @@ namespace CRAH52_HFT_2021221.Client
         } // DONE
         private static void UpdateGuest()
         {
-
-        }
+            RestService restService = new RestService("http://localhost:30907/guests");
+            Console.WriteLine("Enter a new GuestID: ");
+            int id = int.Parse(Console.ReadLine());
+            Console.WriteLine("Type in a new guest name: ");
+            string guestname = Console.ReadLine();
+            Console.WriteLine("Type in a new birthyear: ");
+            int birthyear = int.Parse(Console.ReadLine());
+            Console.WriteLine("New email adress: ");
+            string email = Console.ReadLine();
+            Console.WriteLine("Type in a new event id: ");
+            int eventid = int.Parse(Console.ReadLine());
+            restService.Put<Guests>(new Guests()
+            {
+                GuestID =id,
+                Name = guestname,
+                BirthYear = birthyear,
+                Email = email,
+                EventID = eventid
+            }, "guests");
+            Console.WriteLine("updated");
+        } 
         private static void DeleteGuest()
         {
             RestService restService = new RestService("http://localhost:30907");
